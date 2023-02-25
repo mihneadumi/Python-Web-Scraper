@@ -9,7 +9,7 @@ soup = BeautifulSoup(response.content, 'html.parser') # parse the page using Bea
 raw_product_list = soup.find_all('div', {'class': 'o_wsale_product_grid_wrapper o_wsale_product_grid_wrapper_1_1'})
 # find all the divs with class 'o_wsale_product_grid_wrapper o_wsale_product_grid_wrapper_1_1'
 print(f'Total products: {len(raw_product_list)}\n') # print the number of divs (products) found
-product_list = [] # list of products as tupples (name, price)
+product_list = [] # list of products as tupples (name, price, link)
 
 for product in raw_product_list: # iterate through the divs
     name = product.find('a', {'class': 'product_name'}).text.strip() # find the name of the product
