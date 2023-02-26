@@ -22,7 +22,6 @@ class KSA_Scraper():
         for product in raw_product_list:
             name = product.find('a', {'class': 'product_name'}).text.strip()
             prices = product.find_all('span', {'class': 'oe_currency_value'})
-            print(prices)
             price = float(prices[0].text.strip().replace('.', '').replace(',', '.'))
             if len(prices) == 2:
                 full_price = float(prices[1].text.strip().replace('.', '').replace(',', '.'))
