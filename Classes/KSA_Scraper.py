@@ -5,7 +5,8 @@ from Classes.Product_Class import Product
 class KSA_Scraper():
 
     # ksa_link is the link to the ksaretail.ro page with the products needed to be scraped
-    def __init__(self, ksa_link: str) -> None: 
+    def __init__(self, ksa_link: str) -> None:
+        self.name = 'KSA Retail' 
         raw_product_list = self.get_raw_product_list(ksa_link) # list with raw html of the products
         self.product_list = self.get_product_list(raw_product_list) # list with the products as product objects
     

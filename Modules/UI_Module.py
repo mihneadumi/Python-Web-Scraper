@@ -5,30 +5,35 @@ from Modules.Repository_Module import Repo
 
 class UI:
     def __init__(self) -> None:
-        self.scraper = self.get_scraper()
-        while self.scraper is None:
-            self.scraper = self.get_scraper()
+        self.scraper = None
+        self.get_scraper()
         self.repo = Repo(self.scraper.product_list)
         self.start_app()
 
     def get_scraper(self):
-        link = input('Enter the link to the page with the products: \n> ')
-        if 'ksaretail' in link:
-            return KSA_Scraper(link)
-        else:
-            os.system('cls')
-            print('No scraper for this site yet')
-            return None
+        os.system('cls')
+        self.scraper = None
+        while self.scraper is None:
+            link = input('Enter the link to the page with the products or "exit" to close: \n> ')
+            if 'ksaretail' in link:
+                self.scraper = KSA_Scraper(link)
+            elif link == 'exit':
+                exit()
+            else:
+                os.system('cls')
+                print('No scraper for this site yet')
 
     def start_app(self):
         while True:
             os.system('cls')
             self.print_product_list()
-            print('\n---------------------Menu---------------------')
+            print('\n---------------------Menu---------------------\n')
+            print('Currently scraping: ' + self.scraper.name)
             print('1. Sort the product list')
             print('2. Filter the product list')
             print('3. Remove filters')
-            print('4. Exit')
+            print('4. Scrape a different link')
+            print('5. Exit')
             choice = input('> ')
             if choice == '1':
                 os.system('cls')
@@ -82,7 +87,12 @@ class UI:
             elif choice == '3':
                 self.repo.product_list = self.repo.full_list
             elif choice == '4':
-                os._exit(0)
+                self.get_scraper()
+                self.repo = Repo(self.scraper.product_list)
+            elif choice == '5':
+                exit()
+            else:
+                print('Invalid choice')
 
     def print_product_list(self) -> None:
         print('---------------------Product List---------------------')
