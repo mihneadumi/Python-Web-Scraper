@@ -23,6 +23,6 @@ class Product:
             'name': self.name,
             'curr_price': self.curr_price,
             'full_price': self.full_price,
+            'discount': self.discount,
             'link': self.link,
-            'discount': self.discount
         }
