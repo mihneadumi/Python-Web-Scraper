@@ -25,7 +25,7 @@ class UI:
 
     def start_app(self):
         while True:
-            os.system('cls')
+            # os.system('cls')
             self.print_product_list()
             print('\n---------------------Menu---------------------\n')
             print('Currently scraping: ' + self.scraper.name)
