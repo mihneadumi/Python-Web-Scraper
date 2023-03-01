@@ -15,7 +15,7 @@ class Altex_Scraper():
         url = altex_link
         driver = webdriver.Edge()
         driver.get(url)
-        time.sleep(5)
+        # time.sleep(5)
         html = driver.page_source
         driver.quit()
         soup = BeautifulSoup(html, 'html.parser')
@@ -51,15 +51,19 @@ class Altex_Scraper():
     
     def get_next_page_link(self, altex_link: str) -> str:
         url = altex_link
-        driver = webdriver.Edge()
+        driver = webdriver.Edge(headLess=True)
         driver.get(url)
-        time.sleep(5)
+        # time.sleep(5)
         html = driver.page_source
         driver.quit()
         soup = BeautifulSoup(html, 'html.parser')
         next_page_link = soup.find('a', {'class': 'inline-block py-1 px-2 mx-0.5 sm:mx-1 text-sm border border-gray-1100 rounded-md items-center text-center bg-white'})
         if next_page_link:
-            next_page_link = next_page_link.get('href')
+            content = next_page_link.find('div', {'class': 'hidden md:inline-block'}).text.strip()
+            if content == 'Pagina urmatoare':
+                next_page_link = next_page_link.get('href')
+            else:
+                next_page_link = None
         else:
             next_page_link = None
         return next_page_link

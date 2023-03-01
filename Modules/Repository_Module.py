@@ -1,3 +1,4 @@
+from pandas import DataFrame
 
 class Repo:
     # This class is responsible for storing the products and the operations that can be performed on them
@@ -39,3 +40,8 @@ class Repo:
     def filter_by_discount_range(self, min_discount: int, max_discount: int) -> list:
         # return a list with the products that have a discount between the given discounts
         return [product for product in self.product_list if min_discount <= product.discount <= max_discount]
+    
+    def export_to_excel(self):
+        # export the product list to an excel file
+        df = DataFrame([product.to_dict() for product in self.product_list])
+        df.to_excel('products.xlsx')

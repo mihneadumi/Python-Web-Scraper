@@ -36,7 +36,8 @@ class UI:
             print('2. Filter the product list')
             print('3. Remove filters')
             print('4. Scrape a different link')
-            print('5. Exit')
+            print('5. Export list to excel')
+            print('0. Exit')
             choice = input('> ')
             if choice == '1':
                 os.system('cls')
@@ -44,7 +45,7 @@ class UI:
                 print('1. Sort by name')
                 print('2. Sort by price')
                 print('3. Sort by discount')
-                print('4. Back')
+                print('0. Back')
                 choice = input('> ')
                 if choice == '1':
                     self.repo.sort_by_name()
@@ -52,7 +53,7 @@ class UI:
                     self.repo.sort_by_price()
                 elif choice == '3':
                     self.repo.sort_by_discount()
-                elif choice == '4':
+                elif choice == '0':
                     continue
                 else:
                     print('Invalid choice')
@@ -64,7 +65,7 @@ class UI:
                 print('3. Filter by discount')
                 print('4. Filter by price range')
                 print('5. Filter by discount range')
-                print('6. Back')
+                print('0. Back')
                 choice = input('> ')
                 if choice == '1':
                     name = input('Enter the name: \n> ')
@@ -83,7 +84,7 @@ class UI:
                     min_discount = int(input('Enter the minimum discount: \n> '))
                     max_discount = int(input('Enter the maximum discount: \n> '))
                     self.repo.product_list = self.repo.filter_by_discount_range(min_discount, max_discount)
-                elif choice == '6':
+                elif choice == '0':
                     continue
                 else:
                     print('Invalid choice')
@@ -93,6 +94,8 @@ class UI:
                 self.get_scraper()
                 self.repo = Repo(self.scraper.product_list)
             elif choice == '5':
+                self.repo.export_to_excel()
+            elif choice == '0':
                 exit()
             else:
                 print('Invalid choice')
