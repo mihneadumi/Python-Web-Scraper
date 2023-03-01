@@ -19,7 +19,10 @@ class UI:
             if 'ksaretail' in link:
                 self.scraper = KSA_Scraper(link)
             elif 'altex.ro' in link:
-                self.scraper = Altex_Scraper(link)
+                try:
+                    self.scraper = Altex_Scraper(link)
+                except Exception as e:
+                    print(e)
             elif link == 'exit':
                 exit()
             else:

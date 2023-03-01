@@ -20,6 +20,8 @@ class Altex_Scraper():
         driver.quit()
         soup = BeautifulSoup(html, 'html.parser')
         raw_page_product_list = soup.find('ul', {'class': 'Products flex flex-wrap relative -mx-1 sm:-mx-2'})
+        if not raw_page_product_list:
+            raise Exception('Error: This page cannot be scraped, try another one')
         raw_page_product_list = raw_page_product_list.find_all('a', {'class': 'Product flex flex-col relative hover:shadow-mixRedYellow'})
 
         return raw_page_product_list
@@ -51,19 +53,17 @@ class Altex_Scraper():
     
     def get_next_page_link(self, altex_link: str) -> str:
         url = altex_link
-        driver = webdriver.Edge(headLess=True)
+        driver = webdriver.Edge()
         driver.get(url)
         # time.sleep(5)
         html = driver.page_source
         driver.quit()
         soup = BeautifulSoup(html, 'html.parser')
-        next_page_link = soup.find('a', {'class': 'inline-block py-1 px-2 mx-0.5 sm:mx-1 text-sm border border-gray-1100 rounded-md items-center text-center bg-white'})
-        if next_page_link:
-            content = next_page_link.find('div', {'class': 'hidden md:inline-block'}).text.strip()
-            if content == 'Pagina urmatoare':
-                next_page_link = next_page_link.get('href')
-            else:
-                next_page_link = None
+        next_page_link = soup.find_all('a', {'class': 'inline-block py-1 px-2 mx-0.5 sm:mx-1 text-sm border border-gray-1100 rounded-md items-center text-center bg-white'})
+        if not next_page_link:
+            return None
+        elif next_page_link[-1].text.strip() == 'Pagina urmatoare':
+            next_page_link = next_page_link[-1].get('href')
         else:
-            next_page_link = None
+            return None
         return next_page_link
