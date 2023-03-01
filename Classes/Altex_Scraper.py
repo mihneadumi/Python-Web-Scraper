@@ -53,6 +53,8 @@ class Altex_Scraper():
     
     def get_next_page_link(self, altex_link: str) -> str:
         url = altex_link
+        print(f'Getting products from page {self.page_nr}')
+        self.page_nr += 1
         driver = webdriver.Edge()
         driver.get(url)
         # time.sleep(5)

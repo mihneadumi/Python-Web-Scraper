@@ -45,3 +45,8 @@ class Repo:
         # export the product list to an excel file
         df = DataFrame([product.to_dict() for product in self.product_list])
         df.to_excel('products.xlsx')
+
+    def export_to_csv(self):
+        # export the product list to a csv file
+        df = DataFrame([product.to_dict() for product in self.product_list])
+        df.to_csv('products.csv')

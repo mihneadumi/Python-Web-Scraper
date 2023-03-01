@@ -111,6 +111,8 @@ class UI:
                 self.repo = Repo(self.scraper.product_list)
             elif choice == '5':
                 self.repo.export_to_excel()
+            elif choice == '6':
+                self.repo.export_to_csv()
             elif choice == '0':
                 exit()
             else:

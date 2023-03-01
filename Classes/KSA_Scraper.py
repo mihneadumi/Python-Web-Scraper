@@ -7,6 +7,7 @@ class KSA_Scraper():
     # ksa_link is the link to the ksaretail.ro page with the products needed to be scraped
     def __init__(self, ksa_link: str) -> None:
         self.name = 'KSA Retail' 
+        self.page_nr = 1
         raw_product_list = self.get_raw_product_list(ksa_link) # list with raw html of the products
         self.product_list = self.get_product_list(raw_product_list) # list with the products as product objects
         
@@ -44,6 +45,8 @@ class KSA_Scraper():
     def get_next_page_link(self, ksa_link: str) -> str:
         url = ksa_link
         response = requests.get(url)
+        print(f'Getting products from page {self.page_nr}')
+        self.page_nr += 1
         soup = BeautifulSoup(response.content, 'html.parser')
         next_page_link = soup.find('ul', {'class': 'pagination m-0'})
         if next_page_link:
