@@ -53,6 +53,7 @@ class UI:
             print('3. Remove filters')
             print('4. Scrape a different link')
             print('5. Export list to excel')
+            print('6. Export list to csv')
             print('0. Exit')
             choice = input('> ')
             if choice == '1':

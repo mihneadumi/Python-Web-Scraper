@@ -7,6 +7,7 @@ from Classes.Product_Class import Product
 class Altex_Scraper():
     def __init__(self, altex_link: str) -> None:
         self.name = 'Altex'
+        self.page_nr = 1
         raw_product_list = self.get_raw_product_list(altex_link)
         self.product_list = self.get_product_list(raw_product_list)
     
