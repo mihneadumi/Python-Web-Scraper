@@ -11,18 +11,18 @@ class Product:
     
     def get_discount(self) -> float:
         if self.full_price is None:
-            return None
+            return 0
         else:
             return ceil((1 - (self.curr_price / self.full_price)) * 100)
         
     def __str__(self) -> str:
-        return f'\nProduct: {self.name}\nPrice: {self.curr_price} RON - Discount: {self.discount}% \nLink: {self.link}'
+        return f'\nProduct: {self.name}\nPrice: {self.curr_price} (of site currency) - Discount: {self.discount}% \nLink: {self.link}'
     
     def to_dict(self) -> dict:
         return {
-            'name': self.name,
-            'curr_price': self.curr_price,
-            'full_price': self.full_price,
-            'discount': self.discount,
-            'link': self.link,
+            'Product Name': self.name,
+            'Current Price': self.curr_price,
+            'Full Price': self.full_price,
+            'Discount': self.discount,
+            'Link': self.link,
         }

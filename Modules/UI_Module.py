@@ -1,6 +1,9 @@
 import os
+# from Classes.PCGarage_Scraper import PCGarage_Scraper
+from Classes.OLX_Scraper import OLX_Scraper
 from Classes.KSA_Scraper import KSA_Scraper
 from Classes.Altex_Scraper import Altex_Scraper
+
 from Modules.Repository_Module import Repo
 
 
@@ -12,6 +15,9 @@ class UI:
         self.start_app()
 
     def get_scraper(self):
+        """
+        Gets the scraper depending on the website domain
+        """
         os.system('cls')
         self.scraper = None
         while self.scraper is None:
@@ -19,10 +25,14 @@ class UI:
             if 'ksaretail' in link:
                 self.scraper = KSA_Scraper(link)
             elif 'altex.ro' in link:
-                try:
+                try: # The scraper doesn't work for certain pages because of the website's structure
                     self.scraper = Altex_Scraper(link)
                 except Exception as e:
                     print(e)
+            elif 'olx.ro' in link:
+                self.scraper = OLX_Scraper(link)
+            elif 'pcgarage.ro' in link:
+                print('No scraper for this site yet')
             elif link == 'exit':
                 exit()
             else:
@@ -30,6 +40,9 @@ class UI:
                 print('No scraper for this site yet')
 
     def start_app(self):
+        """
+        Main menu of the app
+        """
         while True:
             # os.system('cls')
             self.print_product_list()
