@@ -1,4 +1,4 @@
-from math import floor
+from math import ceil
 
 
 class Product:
@@ -13,7 +13,7 @@ class Product:
         if self.full_price is None:
             return None
         else:
-            return floor((1 - (self.curr_price / self.full_price)) * 100)
+            return ceil((1 - (self.curr_price / self.full_price)) * 100)
         
     def __str__(self) -> str:
         return f'\nProduct: {self.name}\nPrice: {self.curr_price} RON - Discount: {self.discount}% \nLink: {self.link}'

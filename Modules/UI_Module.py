@@ -1,5 +1,6 @@
 import os
 from Classes.KSA_Scraper import KSA_Scraper
+from Classes.Altex_Scraper import Altex_Scraper
 from Modules.Repository_Module import Repo
 
 
@@ -17,6 +18,8 @@ class UI:
             link = input('Enter the link to the page with the products or "exit" to close: \n> ')
             if 'ksaretail' in link:
                 self.scraper = KSA_Scraper(link)
+            elif 'altex.ro' in link:
+                self.scraper = Altex_Scraper(link)
             elif link == 'exit':
                 exit()
             else:
