@@ -111,9 +111,11 @@ class UI:
                 self.get_scraper()
                 self.repo = Repo(self.scraper.product_list)
             elif choice == '5':
-                self.repo.export_to_excel()
+                filename = input('Enter the filename (without extension): \n> ')
+                self.repo.export_to_excel(filename)
             elif choice == '6':
-                self.repo.export_to_csv()
+                filename = input('Enter the filename (without extension): \n> ')
+                self.repo.export_to_csv(filename)
             elif choice == '0':
                 exit()
             else:

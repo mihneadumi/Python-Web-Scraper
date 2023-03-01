@@ -41,12 +41,12 @@ class Repo:
         # return a list with the products that have a discount between the given discounts
         return [product for product in self.product_list if min_discount <= product.discount <= max_discount]
     
-    def export_to_excel(self):
+    def export_to_excel(self, file_name: str = 'products.xlsx'):
         # export the product list to an excel file
         df = DataFrame([product.to_dict() for product in self.product_list])
-        df.to_excel('products.xlsx')
+        df.to_excel(f'{file_name}.xlsx')
 
-    def export_to_csv(self):
+    def export_to_csv(self, file_name: str = 'products.xlsx'):
         # export the product list to a csv file
         df = DataFrame([product.to_dict() for product in self.product_list])
-        df.to_csv('products.csv')
+        df.to_csv(f'{file_name}.csv')
