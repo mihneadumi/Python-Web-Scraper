@@ -33,7 +33,7 @@ class OLX_Scraper:
             product_list = []
             for product in raw_product_list:
                 name = product.find('h6', {'class': 'css-16v5mdi er34gjf0'}).text.strip()
-                price = float(product.find('p', {'data-testid': 'ad-price'}).text.replace('€', '').replace('Prețul e negociabil', '').replace(' ', '').replace(',', '.'))
+                price = float(product.find('p', {'data-testid': 'ad-price'}).text.replace('€', '').replace('Prețul e negociabil', '').replace('Schimb', '0').replace(' ', '').replace(',', '.'))
                 link = product.get('href')
                 product_list.append(Product(name, price, None, link))
             return product_list
