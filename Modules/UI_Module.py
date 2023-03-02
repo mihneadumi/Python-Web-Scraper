@@ -1,5 +1,6 @@
 import os
-# from Classes.PCGarage_Scraper import PCGarage_Scraper
+
+from Classes.PCGarage_Scraper import PCGarage_Scraper
 from Classes.OLX_Scraper import OLX_Scraper
 from Classes.KSA_Scraper import KSA_Scraper
 from Classes.Altex_Scraper import Altex_Scraper
@@ -32,7 +33,10 @@ class UI:
             elif 'olx.ro' in link:
                 self.scraper = OLX_Scraper(link)
             elif 'pcgarage.ro' in link:
-                print('No scraper for this site yet')
+                try:
+                    self.scraper = PCGarage_Scraper(link)
+                except Exception as e:
+                    print("Couldn't scrape the link. Make sure it's a link to a product page")
             elif link == 'exit':
                 exit()
             else:
