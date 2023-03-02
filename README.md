@@ -2,9 +2,10 @@
 A python based web scraper whose main goal is to get all the products from a website, being able to sort or filter them quickly and make them easily exportable to excel or csv for better data manipulation or statistics (or just for fun)
 
 ## Currently Supported Websites
-* [OLX](https://www.olx.ro/ "olx.ro")
-* [Altex](https://altex.ro/ "altex.ro")
-* [KSA Retail](https://ksaretail.ro/ "ksaretail.ro") - slow because of poor website design
+* [OLX](https://www.olx.ro/ "olx.ro") - fastest because it accepts scraping with [Requests](https://pypi.org/project/requests/)
+* [Altex](https://altex.ro/ "altex.ro") - scraped with [Selenium](https://pypi.org/project/selenium/)
+* [PC Garage](https://www.pcgarage.ro/ "pcgarage.ro") - also scraped with [Selenium](https://pypi.org/project/selenium/)
+* [KSA Retail](https://ksaretail.ro/ "ksaretail.ro") - works with [Requests](https://pypi.org/project/requests/) but is very slow because of poor website design
 
 ## Used Technologies and principles
 * [Requests](https://pypi.org/project/requests/) and [Selenium webdriver](https://pypi.org/project/selenium/) for getting the website's html
