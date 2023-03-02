@@ -27,7 +27,7 @@ A python based web scraper whose main goal is to get all the products from a web
 ```bash
   pip install bs4
 ```
-* Run the 'main.py' file and paste the http link to the desired search query you want to scrape.
+* Run the 'main.py' file and paste the http link to the [**supported website**](#currently-supported-websites) you want to scrape.
 * For [**VSCode users**](https://i.ytimg.com/vi/Ux5cQbO_ybw/maxresdefault.jpg) only, if pylance is acting up, you need to go into IDE Settings (Ctrl+,) and search for "pylance path add' amd imder "Python › Analysis: Include" click on "Add Item" and enter the path of the folder in which the project is located (ex: "A:\Projects\Python-Web-Scraper"
 
 ## How to use
